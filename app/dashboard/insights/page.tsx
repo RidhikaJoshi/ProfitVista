@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react"
-import { motion } from "framer-motion"
+import { useEffect, useState, useRef } from "react"
+import { motion, useAnimation, useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -11,6 +11,7 @@ import {
   ArrowUp,
   ArrowUpRight,
   BarChart3,
+  ChevronRight,
   Download,
   LineChart,
   PieChart,
@@ -23,6 +24,132 @@ import { Progress } from "@/components/ui/progress"
 import { SalesChart } from "@/components/sales-chart"
 import { CategoryChart } from "@/components/category-chart"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+
+
+// interface PerformanceInsightCardProps {
+//   title: string;
+//   value: string;
+//   change: string;
+//   icon: React.ReactNode;
+//   description: string;
+//   chartData?: {
+//     type: "line" | "bar" | "pie";
+//     points?: number[];
+//   };
+//   color?: string;
+// }
+
+// const PerformanceInsightCard: React.FC<PerformanceInsightCardProps> = ({ title, value, change, icon, description, chartData, color = "#00e6e6" }) => {
+//   const ref = useRef(null)
+//   const isInView = useInView(ref, { once: true })
+//   const controls = useAnimation()
+
+//   useEffect(() => {
+//     if (isInView) {
+//       controls.start("visible")
+//     }
+//   }, [isInView, controls])
+
+//   return (
+//     <motion.div
+//       ref={ref}
+//       initial="hidden"
+//       animate={controls}
+//       variants={{
+//         hidden: { opacity: 0, y: 20 },
+//         visible: {
+//           opacity: 1,
+//           y: 0,
+//           transition: { duration: 0.5 },
+//         },
+//       }}
+//       className="space-y-4"
+//     >
+//       <div className="flex items-center justify-between">
+//         <h3 className="font-medium">{title}</h3>
+//         <Badge style={{ backgroundColor: color, color: "black" }}>{change}</Badge>
+//       </div>
+//       <div className="h-[200px] rounded-md border border-gray-800 bg-gray-900 p-4 relative overflow-hidden">
+//         <div className="absolute inset-0 flex items-center justify-center">{icon}</div>
+
+//         {/* Chart visualization */}
+//         <div className="absolute inset-0 opacity-30">
+//           {chartData && chartData.type === "line" && (
+//             <svg className="w-full h-full" viewBox="0 0 100 50" preserveAspectRatio="none">
+//               <motion.path
+//                 d={`M 0,50 ${(chartData.points ?? []).map((p, i) => `L ${i * (100 / ((chartData.points?.length ?? 1) - 1))},${50 - p}`).join(" ")}`}
+//                 fill="none"
+//                 stroke={color}
+//                 strokeWidth="2"
+//                 initial={{ pathLength: 0 }}
+//                 animate={{ pathLength: 1 }}
+//                 transition={{ duration: 2, delay: 0.5 }}
+//               />
+//             </svg>
+//           )}
+
+//           {chartData && chartData.type === "bar" && (
+//             <div className="flex h-full items-end justify-around px-2">
+//               {chartData && (chartData.points ?? []).map((height, i) => (
+//                 <motion.div
+//                   key={i}
+//                   className="w-3 rounded-t-sm"
+//                   style={{ backgroundColor: color }}
+//                   initial={{ height: 0 }}
+//                   animate={{ height: `${height}%` }}
+//                   transition={{ duration: 1, delay: 0.3 + i * 0.1 }}
+//                 />
+//               ))}
+//             </div>
+//           )}
+
+//           {chartData && chartData.type === "pie" && (
+//             <div className="flex h-full items-center justify-center">
+//               <motion.div
+//                 className="w-24 h-24 rounded-full border-4"
+//                 style={{ borderColor: color }}
+//                 initial={{ rotate: 0 }}
+//                 animate={{ rotate: 360 }}
+//                 transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+//               />
+//             </div>
+//           )}
+//         </div>
+
+//         {/* Value overlay */}
+//         <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
+//           <motion.div
+//             initial={{ scale: 0 }}
+//             animate={{ scale: 1 }}
+//             transition={{ duration: 0.5, delay: 0.8 }}
+//             className="text-3xl font-bold"
+//             style={{ color }}
+//           >
+//             {value}
+//           </motion.div>
+//         </div>
+//       </div>
+//       <motion.p
+//         className="text-sm text-gray-400"
+//         initial={{ opacity: 0 }}
+//         animate={{ opacity: 1 }}
+//         transition={{ duration: 0.5, delay: 1 }}
+//       >
+//         {description}
+//       </motion.p>
+//       <motion.div
+//         initial={{ opacity: 0 }}
+//         animate={{ opacity: 1 }}
+//         transition={{ duration: 0.5, delay: 1.2 }}
+//         className="flex items-center justify-end text-sm"
+//       >
+//         <Button variant="link" className="p-0 h-auto text-[#00e6e6]">
+//           View Details <ChevronRight className="h-3 w-3 ml-1" />
+//         </Button>
+//       </motion.div>
+//     </motion.div>
+//   )
+// }
 
 export default function InsightsPage() {
   const [overviewTimeframe, setOverviewTimeframe] = useState("month")
@@ -253,58 +380,89 @@ export default function InsightsPage() {
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             <Card className="border-gray-800 bg-gray-900/50">
-              <CardHeader>
-                <CardTitle>Performance Insights</CardTitle>
-                <CardDescription className="text-gray-400">
-                  Detailed analysis of your business performance
-                </CardDescription>
+              <CardHeader className="flex flex-row items-center justify-between">
+                <div>
+                  <CardTitle>Performance Insights</CardTitle>
+                  <CardDescription className="text-gray-400">
+                    Detailed analysis of your business performance
+                  </CardDescription>
+                </div>
+                <Button variant="outline" className="border-gray-800">
+                  <Download className="mr-2 h-4 w-4" />
+                  Export Report
+                </Button>
               </CardHeader>
               <CardContent>
-                <div className="grid gap-6 md:grid-cols-3">
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <h3 className="font-medium">Revenue Growth</h3>
-                      <Badge className="bg-[#00e6e6] text-black">+24%</Badge>
-                    </div>
-                    <div className="h-[200px] rounded-md border border-gray-800 bg-gray-900 p-4 flex items-center justify-center">
-                      <LineChart className="h-16 w-16 text-[#00e6e6]" />
-                    </div>
-                    <p className="text-sm text-gray-400">
-                      Your revenue has consistently grown over the past 6 months, with the highest growth in the
-                      electronics category.
-                    </p>
-                  </div>
+                {/* <div className="grid gap-6 md:grid-cols-3">
+                  <PerformanceInsightCard
+                    title="Revenue Growth"
+                    value="+24%"
+                    change="Excellent"
+                    icon={<LineChart className="h-16 w-16 text-[#00e6e6] opacity-20" />}
+                    description="Your revenue has consistently grown over the past 6 months, with the highest growth in the electronics category."
+                    chartData={{
+                      type: "line",
+                      points: [30, 25, 35, 30, 40, 45, 50],
+                    }}
+                    color="#00e6e6"
+                  />
 
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <h3 className="font-medium">Customer Retention</h3>
-                      <Badge className="bg-[#00e6e6] text-black">+12%</Badge>
-                    </div>
-                    <div className="h-[200px] rounded-md border border-gray-800 bg-gray-900 p-4 flex items-center justify-center">
-                      <Users className="h-16 w-16 text-[#00e6e6]" />
-                    </div>
-                    <p className="text-sm text-gray-400">
-                      Your customer retention rate has improved by 12% since implementing the loyalty program last
-                      quarter.
-                    </p>
-                  </div>
+                  <PerformanceInsightCard
+                    title="Customer Retention"
+                    value="+12%"
+                    change="Good"
+                    icon={<Users className="h-16 w-16 text-[#00e6e6] opacity-20" />}
+                    description="Your customer retention rate has improved by 12% since implementing the loyalty program last quarter."
+                    chartData={{
+                      type: "bar",
+                      points: [40, 45, 50, 55, 60, 65],
+                    }}
+                    color="#00e6e6"
+                  />
 
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <h3 className="font-medium">Category Performance</h3>
-                      <Badge variant="outline" className="border-gray-800">
-                        View All
-                      </Badge>
-                    </div>
-                    <div className="h-[200px] rounded-md border border-gray-800 bg-gray-900 p-4 flex items-center justify-center">
-                      <PieChart className="h-16 w-16 text-[#00e6e6]" />
-                    </div>
-                    <p className="text-sm text-gray-400">
-                      Electronics and Home & Kitchen categories are outperforming others with 35% and 28% of total sales
-                      respectively.
-                    </p>
-                  </div>
+                  <PerformanceInsightCard
+                    title="Category Performance"
+                    value="35%"
+                    change="Electronics"
+                    icon={<PieChart className="h-16 w-16 text-[#00e6e6] opacity-20" />}
+                    description="Electronics and Home & Kitchen categories are outperforming others with 35% and 28% of total sales respectively."
+                    chartData={{
+                      type: "pie",
+                    }}
+                    color="#00e6e6"
+                  />
+                </div> */}
+
+                {/* Additional metrics row */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                  {[
+                    { label: "Avg. Order Value", value: "$96.20", change: "+3.1%", color: "#00e6e6" },
+                    { label: "Conversion Rate", value: "3.6%", change: "-0.8%", color: "#ff4d4f" },
+                    { label: "Customer Acquisition", value: "$34.72", change: "-2.4%", color: "#00e6e6" },
+                    { label: "Monthly Growth", value: "18.4%", change: "+4.1%", color: "#00e6e6" },
+                  ].map((metric, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
+                      className="rounded-lg border border-gray-800 bg-gray-900 p-3"
+                    >
+                      <p className="text-xs text-gray-400">{metric.label}</p>
+                      <div className="flex items-center justify-between mt-1">
+                        <p className="text-lg font-semibold">{metric.value}</p>
+                        <Badge
+                          variant="outline"
+                          className={`bg-opacity-10 text-${metric.color}`}
+                          style={{ color: metric.color, backgroundColor: `${metric.color}20` }}
+                        >
+                          {metric.change}
+                        </Badge>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
+              
               </CardContent>
             </Card>
           </motion.div>

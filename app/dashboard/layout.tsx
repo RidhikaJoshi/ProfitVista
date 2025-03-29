@@ -72,7 +72,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                 </div>
               </SheetContent>
             </Sheet>
-            <Link href="/dashboard" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2">
               <BarChart3 className="h-6 w-6 text-[#00e6e6]" />
               <span className="text-xl font-bold hidden md:inline-block">ProfitVista</span>
             </Link>

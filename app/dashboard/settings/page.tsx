@@ -335,53 +335,32 @@ export default function SettingsPage() {
               <div className="space-y-4">
                 <h3 className="text-lg font-medium">Accent Color</h3>
                 <div className="grid grid-cols-5 gap-4">
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="h-10 w-10 rounded-full border-2 border-white bg-[#00e6e6]"></div>
-                    <p className="text-xs">Turquoise</p>
-                  </div>
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="h-10 w-10 rounded-full border border-gray-800 bg-purple-500"></div>
-                    <p className="text-xs">Purple</p>
-                  </div>
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="h-10 w-10 rounded-full border border-gray-800 bg-blue-500"></div>
-                    <p className="text-xs">Blue</p>
-                  </div>
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="h-10 w-10 rounded-full border border-gray-800 bg-green-500"></div>
-                    <p className="text-xs">Green</p>
-                  </div>
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="h-10 w-10 rounded-full border border-gray-800 bg-orange-500"></div>
-                    <p className="text-xs">Orange</p>
-                  </div>
+                  {[
+                    { name: "Turquoise", color: "#00e6e6", isSelected: true },
+                    { name: "Purple", color: "#9333ea", isSelected: false },
+                    { name: "Blue", color: "#3b82f6", isSelected: false },
+                    { name: "Green", color: "#10b981", isSelected: false },
+                    { name: "Orange", color: "#f97316", isSelected: false },
+                  ].map((colorOption, index) => (
+                    <div key={index} className="flex flex-col items-center gap-2">
+                      <button
+                        className={`h-10 w-10 rounded-full transition-all hover:scale-110 ${
+                          colorOption.isSelected
+                            ? "ring-2 ring-white ring-offset-2 ring-offset-black"
+                            : "border border-gray-800"
+                        }`}
+                        style={{ backgroundColor: colorOption.color }}
+                        aria-label={`Select ${colorOption.name} theme color`}
+                      />
+                      <p className="text-xs">{colorOption.name}</p>
+                    </div>
+                  ))}
                 </div>
-              </div>
-
-              <div className="space-y-4">
-                <h3 className="text-lg font-medium">Dashboard Layout</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="h-20 w-full rounded-md border-2 border-[#00e6e6] bg-gray-900 p-2">
-                      <div className="grid grid-cols-2 gap-2">
-                        <div className="h-4 w-full rounded bg-gray-800"></div>
-                        <div className="h-4 w-full rounded bg-gray-800"></div>
-                        <div className="h-4 w-full rounded bg-gray-800"></div>
-                        <div className="h-4 w-full rounded bg-gray-800"></div>
-                      </div>
-                    </div>
-                    <p className="text-sm font-medium">Grid (Default)</p>
-                  </div>
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="h-20 w-full rounded-md border border-gray-800 bg-gray-900 p-2">
-                      <div className="space-y-2">
-                        <div className="h-4 w-full rounded bg-gray-800"></div>
-                        <div className="h-4 w-full rounded bg-gray-800"></div>
-                        <div className="h-4 w-full rounded bg-gray-800"></div>
-                      </div>
-                    </div>
-                    <p className="text-sm font-medium">List</p>
-                  </div>
+                <div className="mt-4 rounded-md border border-gray-800 bg-gray-900/50 p-4">
+                  <p className="text-sm text-gray-400">
+                    Your color preference will be applied across the dashboard, including charts, buttons, and
+                    highlights.
+                  </p>
                 </div>
               </div>
 

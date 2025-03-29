@@ -190,35 +190,169 @@ export default function HomePage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="relative h-[300px] w-full overflow-hidden rounded-lg border border-gray-800 bg-gray-900/50 shadow-xl sm:h-[400px]"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-[#00e6e6]/10 to-purple-900/10"></div>
-              <div className="grid h-full grid-cols-2 grid-rows-2 gap-4 p-6">
+              {/* Improved Hero Graphic - More Classy Version */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#00e6e6]/5 to-purple-900/10"></div>
+
+              {/* Abstract background elements */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="absolute inset-0"
+              >
+                <div className="absolute top-[10%] left-[15%] h-32 w-32 rounded-full bg-[#00e6e6]/5 blur-xl"></div>
+                <div className="absolute bottom-[15%] right-[10%] h-40 w-40 rounded-full bg-purple-500/5 blur-xl"></div>
+
+                {/* Subtle grid pattern */}
+                <div
+                  className="absolute inset-0 opacity-10"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(#00e6e6 1px, transparent 1px), linear-gradient(90deg, #00e6e6 1px, transparent 1px)",
+                    backgroundSize: "40px 40px",
+                  }}
+                ></div>
+              </motion.div>
+
+              {/* Main dashboard visualization */}
+              <div className="absolute inset-0 flex items-center justify-center p-6">
                 <motion.div
-                  whileHover={{ scale: 1.05, backgroundColor: "rgba(0, 230, 230, 0.2)" }}
-                  className="rounded-md bg-gray-800/80 p-4"
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.7, delay: 0.6 }}
+                  className="w-full max-w-2xl"
                 >
-                  <LineChart className="h-6 w-6 text-[#00e6e6]" />
-                  <p className="mt-2 text-sm font-medium">Revenue Trends</p>
-                </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.05, backgroundColor: "rgba(0, 230, 230, 0.2)" }}
-                  className="rounded-md bg-gray-800/80 p-4"
-                >
-                  <BarChart3 className="h-6 w-6 text-[#00e6e6]" />
-                  <p className="mt-2 text-sm font-medium">Sales Performance</p>
-                </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.05, backgroundColor: "rgba(0, 230, 230, 0.2)" }}
-                  className="rounded-md bg-gray-800/80 p-4"
-                >
-                  <PieChart className="h-6 w-6 text-[#00e6e6]" />
-                  <p className="mt-2 text-sm font-medium">Category Distribution</p>
-                </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.05, backgroundColor: "rgba(0, 230, 230, 0.2)" }}
-                  className="rounded-md bg-gray-800/80 p-4"
-                >
-                  <Users className="h-6 w-6 text-[#00e6e6]" />
-                  <p className="mt-2 text-sm font-medium">Customer Insights</p>
+                  {/* Dashboard Header */}
+                  <div className="mb-4 flex items-center justify-between rounded-lg bg-gray-800/80 backdrop-blur-sm p-3 border border-gray-700/50">
+                    <div className="flex items-center gap-2">
+                      <div className="h-3 w-3 rounded-full bg-[#00e6e6]"></div>
+                      <div className="h-2 w-16 rounded-full bg-gray-600"></div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="h-2 w-8 rounded-full bg-gray-600"></div>
+                      <div className="h-2 w-8 rounded-full bg-gray-600"></div>
+                      <div className="h-2 w-8 rounded-full bg-gray-600"></div>
+                    </div>
+                  </div>
+
+                  {/* Dashboard Content */}
+                  <div className="grid grid-cols-3 gap-3">
+                    {/* Main Chart */}
+                    <div className="col-span-2 rounded-lg bg-gray-800/80 backdrop-blur-sm p-3 border border-gray-700/50">
+                      <div className="mb-2 flex justify-between items-center">
+                        <div className="h-2 w-20 rounded-full bg-gray-600"></div>
+                        <div className="flex gap-1">
+                          <div className="h-2 w-4 rounded-full bg-gray-600"></div>
+                          <div className="h-2 w-4 rounded-full bg-gray-600"></div>
+                        </div>
+                      </div>
+                      <div className="h-[120px] relative">
+                        <svg className="w-full h-full" viewBox="0 0 100 50" preserveAspectRatio="none">
+                          <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                              <stop offset="0%" stopColor="#00e6e6" stopOpacity="0.3" />
+                              <stop offset="100%" stopColor="#00e6e6" stopOpacity="0" />
+                            </linearGradient>
+                          </defs>
+                          <motion.path
+                            d="M 0,50 L 10,42 L 20,45 L 30,38 L 40,35 L 50,30 L 60,25 L 70,28 L 80,20 L 90,15 L 100,10 L 100,50 Z"
+                            fill="url(#gradient)"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1, delay: 0.8 }}
+                          />
+                          <motion.path
+                            d="M 0,50 L 10,42 L 20,45 L 30,38 L 40,35 L 50,30 L 60,25 L 70,28 L 80,20 L 90,15 L 100,10"
+                            fill="none"
+                            stroke="#00e6e6"
+                            strokeWidth="2"
+                            initial={{ pathLength: 0 }}
+                            animate={{ pathLength: 1 }}
+                            transition={{ duration: 2, delay: 1 }}
+                          />
+                        </svg>
+                      </div>
+                    </div>
+
+                    {/* Side Stats */}
+                    <div className="flex flex-col gap-3">
+                      {/* KPI Card 1 */}
+                      <motion.div
+                        className="rounded-lg bg-gray-800/80 backdrop-blur-sm p-3 border border-gray-700/50"
+                        initial={{ x: 20, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.5, delay: 1.2 }}
+                      >
+                        <div className="h-2 w-12 rounded-full bg-gray-600 mb-2"></div>
+                        <div className="flex justify-between items-end">
+                          <div className="h-5 w-10 bg-[#00e6e6]/30 rounded-sm"></div>
+                          <div className="h-2 w-8 rounded-full bg-[#00e6e6]/50"></div>
+                        </div>
+                      </motion.div>
+
+                      {/* KPI Card 2 */}
+                      <motion.div
+                        className="rounded-lg bg-gray-800/80 backdrop-blur-sm p-3 border border-gray-700/50"
+                        initial={{ x: 20, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.5, delay: 1.4 }}
+                      >
+                        <div className="h-2 w-12 rounded-full bg-gray-600 mb-2"></div>
+                        <div className="flex justify-between items-center">
+                          <div className="flex gap-1">
+                            <div className="h-4 w-4 rounded-full bg-[#00e6e6]/70"></div>
+                            <div className="h-4 w-4 rounded-full bg-[#00e6e6]/40"></div>
+                            <div className="h-4 w-4 rounded-full bg-[#00e6e6]/20"></div>
+                          </div>
+                          <div className="h-2 w-6 rounded-full bg-[#00e6e6]/50"></div>
+                        </div>
+                      </motion.div>
+
+                      {/* KPI Card 3 */}
+                      <motion.div
+                        className="rounded-lg bg-gray-800/80 backdrop-blur-sm p-3 border border-gray-700/50"
+                        initial={{ x: 20, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.5, delay: 1.6 }}
+                      >
+                        <div className="h-2 w-12 rounded-full bg-gray-600 mb-2"></div>
+                        <div className="flex justify-between items-center">
+                          <div className="flex flex-col gap-1">
+                            <div className="h-1 w-12 rounded-full bg-[#00e6e6]/70"></div>
+                            <div className="h-1 w-8 rounded-full bg-[#00e6e6]/50"></div>
+                            <div className="h-1 w-10 rounded-full bg-[#00e6e6]/30"></div>
+                          </div>
+                          <div className="h-2 w-6 rounded-full bg-[#00e6e6]/50"></div>
+                        </div>
+                      </motion.div>
+                    </div>
+                  </div>
+
+                  {/* Bottom Row */}
+                  <div className="mt-3 grid grid-cols-4 gap-3">
+                    {[1, 2, 3, 4].map((i) => (
+                      <motion.div
+                        key={i}
+                        className="rounded-lg bg-gray-800/80 backdrop-blur-sm p-2 border border-gray-700/50"
+                        initial={{ y: 10, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.4, delay: 1.8 + i * 0.1 }}
+                      >
+                        <div className="flex justify-between items-center mb-1">
+                          <div className="h-2 w-6 rounded-full bg-gray-600"></div>
+                          <div className="h-3 w-3 rounded-full bg-[#00e6e6]/30"></div>
+                        </div>
+                        <div className="h-2 w-full rounded-full bg-gray-700">
+                          <motion.div
+                            className="h-full rounded-full bg-[#00e6e6]"
+                            initial={{ width: 0 }}
+                            animate={{ width: `${20 + i * 15}%` }}
+                            transition={{ duration: 1, delay: 2 + i * 0.1 }}
+                          ></motion.div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
                 </motion.div>
               </div>
             </motion.div>

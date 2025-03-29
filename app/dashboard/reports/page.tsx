@@ -11,14 +11,11 @@ import { SalesHeatmap } from "@/components/sales-heatmap"
 import { SalesTable } from "@/components/sales-table"
 import {
   ArrowUpRight,
-  BarChart3,
   Box,
   Download,
   FileText,
-  LineChart,
   Mail,
   Package,
-  PieChart,
   Share2,
   ShoppingBag,
   ShoppingCart,
@@ -80,147 +77,20 @@ export default function ReportsPage() {
         </div>
       </motion.div>
 
-      <Tabs defaultValue="sales" className="w-full">
+      <Tabs defaultValue="products" className="w-full">
         <TabsList className="grid w-full grid-cols-4 bg-gray-800">
-          <TabsTrigger value="sales">Sales</TabsTrigger>
+          
           <TabsTrigger value="products">Products</TabsTrigger>
           <TabsTrigger value="customers">Customers</TabsTrigger>
+          <TabsTrigger value="sales">Sales</TabsTrigger>
           <TabsTrigger value="inventory">Inventory</TabsTrigger>
         </TabsList>
-        <TabsContent value="sales" className="mt-6 space-y-6">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="grid gap-6 md:grid-cols-2"
-          >
-            <motion.div variants={itemVariants}>
-              <Card className="border-gray-800 bg-gray-900/50">
-                <CardHeader className="flex flex-row items-center justify-between pb-2">
-                  <div>
-                    <CardTitle>Revenue Trends</CardTitle>
-                    <CardDescription className="text-gray-400">Monthly revenue over time</CardDescription>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Button variant="outline" size="sm" className="border-gray-800">
-                      <Download className="mr-2 h-4 w-4" />
-                      Export
-                    </Button>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <SalesChart />
-                </CardContent>
-              </Card>
-            </motion.div>
-            <motion.div variants={itemVariants}>
-              <Card className="border-gray-800 bg-gray-900/50">
-                <CardHeader className="flex flex-row items-center justify-between pb-2">
-                  <div>
-                    <CardTitle>Sales by Category</CardTitle>
-                    <CardDescription className="text-gray-400">Distribution across product categories</CardDescription>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Button variant="outline" size="sm" className="border-gray-800">
-                      <Download className="mr-2 h-4 w-4" />
-                      Export
-                    </Button>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <CategoryChart />
-                </CardContent>
-              </Card>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="grid gap-6 md:grid-cols-2"
-          >
-            <motion.div variants={itemVariants}>
-              <Card className="border-gray-800 bg-gray-900/50">
-                <CardHeader className="flex flex-row items-center justify-between pb-2">
-                  <div>
-                    <CardTitle>Customer Conversion</CardTitle>
-                    <CardDescription className="text-gray-400">Conversion funnel analysis</CardDescription>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Button variant="outline" size="sm" className="border-gray-800">
-                      <Download className="mr-2 h-4 w-4" />
-                      Export
-                    </Button>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <ConversionChart />
-                </CardContent>
-              </Card>
-            </motion.div>
-            <motion.div variants={itemVariants}>
-              <Card className="border-gray-800 bg-gray-900/50">
-                <CardHeader className="flex flex-row items-center justify-between pb-2">
-                  <div>
-                    <CardTitle>Sales Heatmap</CardTitle>
-                    <CardDescription className="text-gray-400">Peak sales hours by day</CardDescription>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Button variant="outline" size="sm" className="border-gray-800">
-                      <Download className="mr-2 h-4 w-4" />
-                      Export
-                    </Button>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <SalesHeatmap />
-                </CardContent>
-              </Card>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <Card className="border-gray-800 bg-gray-900/50">
-              <CardHeader className="flex flex-row items-center justify-between">
-                <div>
-                  <CardTitle>Detailed Sales Report</CardTitle>
-                  <CardDescription className="text-gray-400">
-                    Comprehensive view of all sales transactions
-                  </CardDescription>
-                </div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <Button variant="outline" size="sm" className="border-gray-800">
-                    <Download className="mr-2 h-4 w-4" />
-                    Export CSV
-                  </Button>
-                  <Button variant="outline" size="sm" className="border-gray-800">
-                    <Mail className="mr-2 h-4 w-4" />
-                    Email Report
-                  </Button>
-                  <Button size="sm" className="bg-[#00e6e6] text-black hover:bg-[#00b3b3]">
-                    <Share2 className="mr-2 h-4 w-4" />
-                    Share
-                  </Button>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <SalesTable />
-              </CardContent>
-            </Card>
-          </motion.div>
-        </TabsContent>
-
         <TabsContent value="products" className="mt-6 space-y-6">
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6"
+           initial={{ opacity: 0 }}
+           animate={{ opacity: 1 }}
+           transition={{ duration: 0.5 }}
+           className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6"
           >
             <div>
               <h2 className="text-xl font-bold">Product Performance</h2>
@@ -250,6 +120,7 @@ export default function ReportsPage() {
             initial="hidden"
             animate="visible"
             className="grid gap-6 md:grid-cols-2 lg:grid-cols-4"
+            
           >
             {[
               {
@@ -553,6 +424,136 @@ export default function ReportsPage() {
             </Card>
           </motion.div>
         </TabsContent>
+        <TabsContent value="sales" className="mt-6 space-y-6">
+          <motion.div
+            
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6"
+          >
+            <motion.div variants={itemVariants}>
+              <Card className="border-gray-800 bg-gray-900/50">
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                  <div>
+                    <CardTitle>Revenue Trends</CardTitle>
+                    <CardDescription className="text-gray-400">Monthly revenue over time</CardDescription>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Button variant="outline" size="sm" className="border-gray-800">
+                      <Download className="mr-2 h-4 w-4" />
+                      Export
+                    </Button>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <SalesChart />
+                </CardContent>
+              </Card>
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <Card className="border-gray-800 bg-gray-900/50">
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                  <div>
+                    <CardTitle>Sales by Category</CardTitle>
+                    <CardDescription className="text-gray-400">Distribution across product categories</CardDescription>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Button variant="outline" size="sm" className="border-gray-800">
+                      <Download className="mr-2 h-4 w-4" />
+                      Export
+                    </Button>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <CategoryChart />
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid gap-6 md:grid-cols-2"
+          >
+            <motion.div variants={itemVariants}>
+              <Card className="border-gray-800 bg-gray-900/50">
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                  <div>
+                    <CardTitle>Customer Conversion</CardTitle>
+                    <CardDescription className="text-gray-400">Conversion funnel analysis</CardDescription>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Button variant="outline" size="sm" className="border-gray-800">
+                      <Download className="mr-2 h-4 w-4" />
+                      Export
+                    </Button>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <ConversionChart />
+                </CardContent>
+              </Card>
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <Card className="border-gray-800 bg-gray-900/50">
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                  <div>
+                    <CardTitle>Sales Heatmap</CardTitle>
+                    <CardDescription className="text-gray-400">Peak sales hours by day</CardDescription>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Button variant="outline" size="sm" className="border-gray-800">
+                      <Download className="mr-2 h-4 w-4" />
+                      Export
+                    </Button>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <SalesHeatmap />
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <Card className="border-gray-800 bg-gray-900/50">
+              <CardHeader className="flex flex-row items-center justify-between">
+                <div>
+                  <CardTitle>Detailed Sales Report</CardTitle>
+                  <CardDescription className="text-gray-400">
+                    Comprehensive view of all sales transactions
+                  </CardDescription>
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <Button variant="outline" size="sm" className="border-gray-800">
+                    <Download className="mr-2 h-4 w-4" />
+                    Export CSV
+                  </Button>
+                  <Button variant="outline" size="sm" className="border-gray-800">
+                    <Mail className="mr-2 h-4 w-4" />
+                    Email Report
+                  </Button>
+                  <Button size="sm" className="bg-[#00e6e6] text-black hover:bg-[#00b3b3]">
+                    <Share2 className="mr-2 h-4 w-4" />
+                    Share
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <SalesTable />
+              </CardContent>
+            </Card>
+          </motion.div>
+        </TabsContent>
+
+
 
         <TabsContent value="customers" className="mt-6 space-y-6">
           <motion.div
