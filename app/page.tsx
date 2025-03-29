@@ -19,7 +19,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { AuthModal } from "@/components/auth-modal"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Avatar } from "@/components/ui/avatar"
 
 
 export default function HomePage() {
@@ -138,7 +138,7 @@ export default function HomePage() {
             <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
               <BarChart3 className="h-6 w-6 text-[#00e6e6]" />
             </motion.div>
-            <span className="text-xl font-bold">ProfitVista</span>
+            <Link href="/"><span className="text-xl font-bold">ProfitVista</span></Link>
           </div>
           <div className="flex items-center gap-4">
             <Button variant="ghost" onClick={openLoginModal}>
