@@ -122,13 +122,7 @@ export default function DashboardPage() {
             icon: <ArrowDown className="h-4 w-4" />,
             positive: false,
           },
-          {
-            title: "Customer Acquisition",
-            value: "$34.72",
-            change: "-2.4%",
-            icon: <ArrowDown className="h-4 w-4" />,
-            positive: true,
-          },
+          
           {
             title: "Avg. Order Value",
             value: "$96.20",
@@ -136,6 +130,13 @@ export default function DashboardPage() {
             icon: <ArrowUp className="h-4 w-4" />,
             positive: true,
           },
+          {
+            title: "Acquiring clients",
+            value: "$34.72",
+            change: "-2.4%",
+            icon: <ArrowDown className="h-4 w-4" />,
+            positive: false,
+          }
         ].map((card, index) => (
           <motion.div key={index} variants={itemVariants}>
             <motion.div
@@ -144,7 +145,7 @@ export default function DashboardPage() {
             >
               <Card className="border-gray-800 bg-gray-900/50">
                 <CardHeader className="pb-2">
-                  <CardDescription className="text-gray-400">{card.title}</CardDescription>
+                  <CardDescription className="text-gray-400 text-sm">{card.title}</CardDescription>
                   <CardTitle className="text-2xl font-bold">{card.value}</CardTitle>
                 </CardHeader>
                 <CardContent>

@@ -131,7 +131,7 @@ export default function ReportsPage() {
               },
               {
                 title: "Top Seller",
-                value: "Wireless Headphones",
+                value: "Headphones",
                 icon: <ShoppingBag className="h-5 w-5 text-[#00e6e6]" />,
                 change: "$24,500",
               },
