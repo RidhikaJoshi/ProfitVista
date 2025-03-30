@@ -81,8 +81,9 @@ export default function ReportsPage() {
         <TabsList className="grid w-full grid-cols-4 bg-gray-800">
           
           <TabsTrigger value="products">Products</TabsTrigger>
-          <TabsTrigger value="customers">Customers</TabsTrigger>
+         
           <TabsTrigger value="sales">Sales</TabsTrigger>
+          <TabsTrigger value="customers">Customers</TabsTrigger>
           <TabsTrigger value="inventory">Inventory</TabsTrigger>
         </TabsList>
         <TabsContent value="products" className="mt-6 space-y-6">
@@ -425,7 +426,40 @@ export default function ReportsPage() {
           </motion.div>
         </TabsContent>
         <TabsContent value="sales" className="mt-6 space-y-6">
-          <motion.div
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <Card className="border-gray-800 bg-gray-900/50">
+              <CardHeader className="flex flex-row items-center justify-between">
+                <div>
+                  <CardTitle>Detailed Sales Report</CardTitle>
+                  <CardDescription className="text-gray-400">
+                    Comprehensive view of all sales transactions
+                  </CardDescription>
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <Button variant="outline" size="sm" className="border-gray-800">
+                    <Download className="mr-2 h-4 w-4" />
+                    Export CSV
+                  </Button>
+                  <Button variant="outline" size="sm" className="border-gray-800">
+                    <Mail className="mr-2 h-4 w-4" />
+                    Email Report
+                  </Button>
+                  <Button size="sm" className="bg-[#00e6e6] text-black hover:bg-[#00b3b3]">
+                    <Share2 className="mr-2 h-4 w-4" />
+                    Share
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <SalesTable />
+              </CardContent>
+            </Card>
+          </motion.div>
+          {/* <motion.div
             
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -516,41 +550,9 @@ export default function ReportsPage() {
                 </CardContent>
               </Card>
             </motion.div>
-          </motion.div>
+          </motion.div> */}
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <Card className="border-gray-800 bg-gray-900/50">
-              <CardHeader className="flex flex-row items-center justify-between">
-                <div>
-                  <CardTitle>Detailed Sales Report</CardTitle>
-                  <CardDescription className="text-gray-400">
-                    Comprehensive view of all sales transactions
-                  </CardDescription>
-                </div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <Button variant="outline" size="sm" className="border-gray-800">
-                    <Download className="mr-2 h-4 w-4" />
-                    Export CSV
-                  </Button>
-                  <Button variant="outline" size="sm" className="border-gray-800">
-                    <Mail className="mr-2 h-4 w-4" />
-                    Email Report
-                  </Button>
-                  <Button size="sm" className="bg-[#00e6e6] text-black hover:bg-[#00b3b3]">
-                    <Share2 className="mr-2 h-4 w-4" />
-                    Share
-                  </Button>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <SalesTable />
-              </CardContent>
-            </Card>
-          </motion.div>
+        
         </TabsContent>
 
 
