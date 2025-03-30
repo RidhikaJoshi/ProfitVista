@@ -113,7 +113,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <DropdownMenuContent align="end" className="w-56 border-gray-800 bg-gray-900">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator className="bg-gray-800" />
-                <Link href="http://ridhikajoshi.me/"><DropdownMenuItem className="cursor-pointer flex items-center gap-2">
+                <Link href="http://ridhikajoshi.me/" target="_blank"><DropdownMenuItem className="cursor-pointer flex items-center gap-2">
                   <User className="h-4 w-4" />
                   Profile
                 </DropdownMenuItem></Link>

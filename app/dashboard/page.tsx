@@ -327,7 +327,9 @@ export default function DashboardPage() {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: i * 0.1 }}
-                      className="flex items-center gap-4"
+                      //className="flex items-center gap-4"
+                       className="rounded-lg border border-gray-800 bg-gray-900 flex items-center gap-4 p-3"
+                      whileHover={{ y: -5, boxShadow: "0 10px 30px -15px rgba(255, 0, 0, 0.2)" }}
                     >
                       <div className="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center">
                         <Users className="h-5 w-5 text-[#00e6e6]" />
