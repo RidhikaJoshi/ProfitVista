@@ -106,26 +106,26 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                   <div className="h-8 w-8 rounded-full bg-gray-700 flex items-center justify-center">
                     <User className="h-4 w-4" />
                   </div>
-                  <div className="hidden md:block text-sm font-medium">John Doe</div>
+                  <div className="hidden md:block text-sm font-medium">Ridhika Joshi</div>
                   <ChevronDown className="h-4 w-4 text-gray-400" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56 border-gray-800 bg-gray-900">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator className="bg-gray-800" />
-                <DropdownMenuItem className="flex items-center gap-2">
+                <Link href="http://ridhikajoshi.me/"><DropdownMenuItem className="cursor-pointer flex items-center gap-2">
                   <User className="h-4 w-4" />
                   Profile
-                </DropdownMenuItem>
-                <DropdownMenuItem className="flex items-center gap-2">
+                </DropdownMenuItem></Link>
+                <Link href="/dashboard/settings"><DropdownMenuItem className="cursor-pointer flex items-center gap-2">
                   <Settings className="h-4 w-4" />
                   Settings
-                </DropdownMenuItem>
+                </DropdownMenuItem></Link>
                 <DropdownMenuSeparator className="bg-gray-800" />
-                <DropdownMenuItem className="flex items-center gap-2 text-red-500">
+                <Link href="/"><DropdownMenuItem className=" cursor-pointer flex items-center gap-2 text-red-500">
                   <LogOut className="h-4 w-4" />
-                  <Link href="/">Log out</Link>
-                </DropdownMenuItem>
+                  Log out
+                </DropdownMenuItem></Link>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>

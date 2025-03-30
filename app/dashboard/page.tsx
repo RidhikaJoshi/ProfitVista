@@ -272,16 +272,16 @@ export default function DashboardPage() {
         transition={{ delay: 0.5 }}
         className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
       >
-        <motion.div variants={itemVariants}>
-          <motion.div whileHover={{ y: -5, boxShadow: "0 10px 30px -15px rgba(0, 230, 230, 0.2)" }}>
+        {/* <motion.div variants={itemVariants}>
+          <motion.div whileHover={{ y: -5, boxShadow: "0 10px 30px -15px rgba(0, 230, 230, 0.2)" }}> */}
             <Card className="border-gray-800 bg-gray-900/50">
               <CardHeader>
                 <CardTitle>Best Selling Products</CardTitle>
                 <CardDescription className="text-gray-400">Top performers by revenue</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {[1, 2, 3,4,5].map((i) => (
+                <div className="space-y-4 h-full">
+                  {[1, 2, 3,4].map((i) => (
                     <motion.div
                       key={i}
                       initial={{ opacity: 0, x: -20 }}
@@ -309,19 +309,19 @@ export default function DashboardPage() {
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
-        </motion.div>
+          {/* </motion.div>
+        </motion.div> */}
 
-        <motion.div variants={itemVariants}>
-          <motion.div whileHover={{ y: -5, boxShadow: "0 10px 30px -15px rgba(0, 230, 230, 0.2)" }}>
+        {/* <motion.div variants={itemVariants}>
+          <motion.div whileHover={{ y: -5, boxShadow: "0 10px 30px -15px rgba(0, 230, 230, 0.2)" }}> */}
             <Card className="border-gray-800 bg-gray-900/50">
               <CardHeader>
                 <CardTitle>Top Sales Representatives</CardTitle>
                 <CardDescription className="text-gray-400">Highest performing team members</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {[1, 2, 3,4,5,6].map((i) => (
+                <div className="space-y-4 ">
+                  {[1, 2, 3,4].map((i) => (
                     <motion.div
                       key={i}
                       initial={{ opacity: 0, x: -20 }}
@@ -349,11 +349,11 @@ export default function DashboardPage() {
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
-        </motion.div>
+          {/* </motion.div>
+        </motion.div> */}
 
-        <motion.div variants={itemVariants}>
-          <motion.div whileHover={{ y: -5, boxShadow: "0 10px 30px -15px rgba(0, 230, 230, 0.2)" }}>
+        {/* <motion.div variants={itemVariants}>
+          <motion.div whileHover={{ y: -5, boxShadow: "0 10px 30px -15px rgba(0, 230, 230, 0.2)" }}> */}
             <Card className="border-gray-800 bg-gray-900/50">
               <CardHeader>
                 <CardTitle>Revenue by Region</CardTitle>
@@ -393,8 +393,8 @@ export default function DashboardPage() {
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
-        </motion.div>
+          {/* </motion.div>
+        </motion.div> */}
       </motion.div>
 
       {/* Sales Table */}
