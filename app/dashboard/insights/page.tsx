@@ -238,7 +238,7 @@ export default function InsightsPage() {
             animate="visible"
             className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
           >
-            <motion.div variants={itemVariants}>
+            {/* <motion.div variants={itemVariants}> */}
               <Card className="border-gray-800 bg-gray-900/50">
                 <CardHeader>
                   <CardTitle>Key Insights</CardTitle>
@@ -293,9 +293,9 @@ export default function InsightsPage() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            {/* </motion.div> */}
 
-            <motion.div variants={itemVariants}>
+            {/* <motion.div variants={itemVariants}> */}
               <Card className="border-gray-800 bg-gray-900/50">
                 <CardHeader>
                   <CardTitle>Best Selling Products</CardTitle>
@@ -309,7 +309,7 @@ export default function InsightsPage() {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: i * 0.1 }}
-                        className="flex items-center gap-4"
+                        className="flex items-center gap-4 hover:bg-gray-800/50 rounded-lg justify-between p-3"
                       >
                         <div className="h-16 w-16 rounded-md bg-gray-800 flex items-center justify-center">
                           <ShoppingCart className="h-8 w-8 text-[#00e6e6]" />
@@ -331,9 +331,9 @@ export default function InsightsPage() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            {/* </motion.div> */}
 
-            <motion.div variants={itemVariants}>
+            {/* <motion.div variants={itemVariants}> */}
               <Card className="border-gray-800 bg-gray-900/50">
                 <CardHeader>
                   <CardTitle>Recommendations</CardTitle>
@@ -371,7 +371,7 @@ export default function InsightsPage() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            {/* </motion.div> */}
           </motion.div>
 
           <motion.div

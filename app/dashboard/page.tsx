@@ -280,14 +280,14 @@ export default function DashboardPage() {
                 <CardDescription className="text-gray-400">Top performers by revenue</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4 h-full">
+                <div className="space-y-4 h-full ">
                   {[1, 2, 3,4].map((i) => (
                     <motion.div
                       key={i}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: i * 0.1 }}
-                      className="flex items-center gap-4"
+                      className="flex items-center gap-4 hover:bg-gray-800/50 rounded-lg p-3"
                     >
                       <div className="h-16 w-16 rounded-md bg-gray-800 flex items-center justify-center">
                         <ShoppingCart className="h-8 w-8 text-[#00e6e6]" />
@@ -329,7 +329,7 @@ export default function DashboardPage() {
                       transition={{ duration: 0.3, delay: i * 0.1 }}
                       //className="flex items-center gap-4"
                        className="rounded-lg border border-gray-800 bg-gray-900 flex items-center gap-4 p-3"
-                      whileHover={{ y: -5, boxShadow: "0 10px 30px -15px rgba(255, 0, 0, 0.2)" }}
+                      whileHover={{ y: -7, boxShadow: "0 10px 30px -15px rgba(255, 0, 0, 0.2)" }}
                     >
                       <div className="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center">
                         <Users className="h-5 w-5 text-[#00e6e6]" />
