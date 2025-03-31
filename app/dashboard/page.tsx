@@ -1,7 +1,11 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSalesData } from "@/store/salesSlice";
+import { AppDispatch, RootState } from "@/store/index";
+
 import {
   ArrowDown,
   ArrowUp,
@@ -23,7 +27,22 @@ import { ConversionChart } from "@/components/conversion-chart"
 import { SalesHeatmap } from "@/components/sales-heatmap"
 
 export default function DashboardPage() {
-  const [activeFilter, setActiveFilter] = useState("all")
+  const [activeFilter, setActiveFilter] = useState("all");
+  
+  const dispatch = useDispatch<AppDispatch>();
+  const { data, loading } = useSelector((state: RootState) => state.sales);
+
+  useEffect(() => {
+      dispatch(fetchSalesData()); // Initial fetch
+
+      // Fetch data every 30 minutes
+      const interval = setInterval(() => {
+          dispatch(fetchSalesData());
+      }, 180000); // 30 minutes
+
+      return () => clearInterval(interval); // Cleanup on unmount
+  }, [dispatch]);
+
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -44,6 +63,13 @@ export default function DashboardPage() {
         duration: 0.5,
       },
     },
+  }
+  if(loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p className="text-gray-400">Loading...</p>
+      </div>
+    )
   }
 
   return (
@@ -96,28 +122,28 @@ export default function DashboardPage() {
         {[
           {
             title: "Total Revenue",
-            value: "$124,563.00",
+            value:  data?.Total_Revenue ? `$${data.Total_Revenue.toLocaleString()}` : "$0.00",    
             change: "+12.5%",
             icon: <ArrowUp className="h-4 w-4" />,
             positive: true,
           },
           {
             title: "Total Sales",
-            value: "1,243",
+            value: data?.Total_Sales ? `${data.Total_Sales.toLocaleString()}` : "0",
             change: "+8.2%",
             icon: <ArrowUp className="h-4 w-4" />,
             positive: true,
           },
           {
             title: "Monthly Growth",
-            value: "18.4%",
+            value: data?.Monthly_Growth ? `${data.Monthly_Growth.toFixed(1)}%` : "0.0%",
             change: "+4.1%",
             icon: <ArrowUp className="h-4 w-4" />,
             positive: true,
           },
           {
             title: "Conversion Rate",
-            value: "3.6%",
+            value: data?.Conversion_Rate ? `${data.Conversion_Rate.toFixed(1)}%` : "0.0%",
             change: "-0.8%",
             icon: <ArrowDown className="h-4 w-4" />,
             positive: false,
@@ -125,14 +151,14 @@ export default function DashboardPage() {
           
           {
             title: "Avg. Order Value",
-            value: "$96.20",
+            value: data?.Avg_Order_Value ? `$${data.Avg_Order_Value.toFixed(2)}` : "$0.00",
             change: "+3.1%",
             icon: <ArrowUp className="h-4 w-4" />,
             positive: true,
           },
           {
             title: "Acquiring clients",
-            value: "$34.72",
+            value: data?.Acquiring_Clients ? `$${data.Acquiring_Clients.toFixed(2)}` : "$0.00",
             change: "-2.4%",
             icon: <ArrowDown className="h-4 w-4" />,
             positive: false,
