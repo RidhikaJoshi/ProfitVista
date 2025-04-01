@@ -25,7 +25,7 @@ const initialState: SalesState = {
 export const fetchSalesData = createAsyncThunk<SalesData>(
     "sales/fetchSales",
     async () => {
-        const response = await fetch("http://localhost:3000/api/sales");
+        const response = await fetch("https://profit-vista.ridhikajoshi.me/api/sales");
         return response.json();
     }
 );
