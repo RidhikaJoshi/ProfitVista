@@ -1,7 +1,15 @@
 # ProfitVista - Sales Dashboard
+![image](https://github.com/user-attachments/assets/5d1089f7-93a7-444e-8fb5-bd72f7a2f73e)
 
 ## Overview
 ProfitVista is a modern and interactive sales dashboard designed to provide insightful data visualization and analytics. Built with a **dark-themed UI** (black with turquoise blue highlights), it offers real-time sales metrics, customizable filters, detailed reports, and exportable data—all powered by **dummy data** for demonstration purposes.
+
+![image](https://github.com/user-attachments/assets/63e5ec69-0acc-46fe-9859-35692b1799d6)
+
+![image](https://github.com/user-attachments/assets/f69cfd3b-a030-4896-9001-1fad5c2f52a2)
+
+![image](https://github.com/user-attachments/assets/7275f742-e902-4144-85ff-1d800d123b05)
+
 
 ## Features
 ### **1. Authentication & Homepage**
